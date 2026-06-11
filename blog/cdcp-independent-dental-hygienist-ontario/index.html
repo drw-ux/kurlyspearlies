@@ -231,7 +231,7 @@
   <li>"What happens if my income tier changed this year?"</li>
 </ol>
 
-<p><em>Kelly Smith is a Registered Dental Hygienist (CDHO) and the founder of Kurly's Pearlies, an independent dental hygiene clinic at 28 Robina Avenue, Georgetown, Ontario. Evenings and Saturdays available.</em></p>
+<p><em>Kelly Smith is a Registered Dental Hygienist (CDHO) with <span data-years-since="2017-11" data-format="plus">8+</span> years of practice and the founder of Kurly's Pearlies, an independent dental hygiene clinic at 28 Robina Avenue, Georgetown, Ontario. Evenings and Saturdays available.</em></p>
 
 </article>
 
@@ -294,5 +294,20 @@
 <!-- Cloudflare Web Analytics -->
 <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d51254b5ae8e4344943abdd68132031a"}'></script>
 <!-- End Cloudflare Web Analytics -->
+<script>
+(function(){
+  var words=["zero","one","two","three","four","five","six","seven","eight","nine","ten","eleven","twelve","thirteen","fourteen","fifteen","sixteen","seventeen","eighteen","nineteen","twenty"];
+  var now=new Date(),nowY=now.getFullYear(),nowM=now.getMonth()+1;
+  document.querySelectorAll("[data-years-since]").forEach(function(el){
+    var parts=String(el.dataset.yearsSince).split("-");
+    var sy=parseInt(parts[0],10),sm=parts.length>1?parseInt(parts[1],10):1;
+    var n=nowY-sy; if(nowM<sm) n--; if(n<0) n=0;
+    var fmt=el.dataset.format||"plus";
+    if(fmt==="word")el.textContent=words[n]||n;
+    else if(fmt==="wordplus")el.textContent="over "+(words[n]||n);
+    else el.textContent=n+"+";
+  });
+})();
+</script>
 </body>
 </html>
