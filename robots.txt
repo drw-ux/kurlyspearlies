@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /404.html
 
-Sitemap: https://www.kurlyspearlies.com/sitemap.xml
+Sitemap: https://kurlyspearlies.com/sitemap.xml
