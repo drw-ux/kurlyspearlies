@@ -27,9 +27,9 @@
   "name":"Custom Take-Home Whitening Trays",
   "serviceType":"Custom-fitted teeth whitening trays",
   "description":"Custom Philips whitening trays made from impressions of your teeth in Georgetown, Ontario, with DayWhite or NiteWhite professional gel.",
-  "provider":{"@type":"Dentist","name":"Kurly's Pearlies","url":"https://kurlyspearlies.com/","telephone":"+1-416-460-4436","address":{"@type":"PostalAddress","streetAddress":"28 Robina Avenue","addressLocality":"Georgetown","addressRegion":"ON","postalCode":"L7G 5X9","addressCountry":"CA"}},
+  "provider":{"@type":"LocalBusiness","name":"Kurly's Pearlies","url":"https://kurlyspearlies.com/","telephone":"+1-416-460-4436","address":{"@type":"PostalAddress","streetAddress":"28 Robina Avenue","addressLocality":"Georgetown","addressRegion":"ON","postalCode":"L7G 5X9","addressCountry":"CA"}},
   "areaServed":["Georgetown","Halton Hills","Milton","Oakville","Brampton","Mississauga","Burlington","Guelph"],
-  "offers":{"@type":"Offer","priceCurrency":"CAD","availability":"https://schema.org/InStock"},
+  "offers":{"@type":"Offer","price":"150","priceCurrency":"CAD","availability":"https://schema.org/InStock"},
   "mainEntityOfPage":{"@type":"WebPage","@id":"https://kurlyspearlies.com/trays/"}
 }
 </script>
@@ -133,7 +133,7 @@
 
   footer{background:var(--plum-deep);color:var(--bone);padding:72px 32px 32px;text-align:center}
   .footer-inner{max-width:780px;margin:0 auto}
-  .footer-logo-img{height:52px;width:auto;margin-bottom:24px;opacity:.92;filter:brightness(0) invert(1) opacity(.95)}
+  .footer-logo-img{height:52px;width:auto;margin-bottom:24px;opacity:.92}
   footer p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;line-height:1.6;color:rgba(251,246,238,.78);margin-bottom:14px}
   footer .addr{font-family:'Tenor Sans',sans-serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(251,246,238,.85);line-height:1.8;margin-bottom:32px}
   footer .links{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:18px;font-family:'Tenor Sans',sans-serif;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
@@ -150,7 +150,7 @@
   <div class="nav-inner">
     <a href="/" class="nav-back">← Back to Home</a>
     <a href="/" class="logo-wrap"><img class="logo-img" src="/images/logo-nav.png" alt="Kurly's Pearlies" width="240" height="131" fetchpriority="high" decoding="async"></a>
-    <a href="https://kurlyspearlies.janeapp.com/" class="nav-cta">Book a Visit</a>
+    <a href="/book/" class="nav-cta">Book a Visit</a>
   </div>
 </nav>
 
@@ -239,7 +239,7 @@
   <div class="closer-inner">
     <h2>Whiten on <em>your schedule</em>.</h2>
     <p>Book a 20-minute tray impression appointment at our Georgetown clinic.</p>
-    <a class="btn" href="https://kurlyspearlies.janeapp.com/">Book a Tray Impression</a>
+    <a class="btn" href="https://kurlyspearlies.janeapp.com/locations/kurly-s-pearlies/book#staff_member/1/treatment/10">Book a Tray Impression</a>
   </div>
 </section>
 
@@ -247,7 +247,7 @@
 
 <footer>
   <div class="footer-inner">
-    <img class="footer-logo-img" src="/images/logo-nav.png" alt="Kurly's Pearlies" width="240" height="131" decoding="async" loading="lazy">
+    <img class="footer-logo-img" src="/images/logo-white.png" alt="Kurly's Pearlies" width="1066" height="432" decoding="async" loading="lazy">
     <p>An independent dental hygiene clinic in Georgetown, Ontario — serving Halton Hills, Milton, Oakville, Brampton, Mississauga, Etobicoke, Burlington, Guelph, and Hamilton.</p>
     <div class="addr">28 Robina Avenue<br>Georgetown, Ontario · L7G 5X9 · Canada<br>+1 · 416 · 460 · 4436</div>
     <div class="links">
@@ -257,14 +257,11 @@
       <a href="/trays/">Custom Trays</a>
       <a href="/locations/">Locations</a>
       <a href="/blog/">Journal</a>
-      <a href="https://kurlyspearlies.janeapp.com/">Book</a>
+      <a href="/book/">Book</a>
     </div>
     <div class="copyright">© Kurly's Pearlies · MMXXVI · Kelly Smith · RDH</div>
   </div>
 </footer>
 
 <!-- Cloudflare Web Analytics -->
-<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d51254b5ae8e4344943abdd68132031a"}'></script>
-<!-- End Cloudflare Web Analytics -->
-</body>
-</html>
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "d51254b5ae8e4344943abdd68132031a"}'></scr
