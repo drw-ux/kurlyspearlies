@@ -73,8 +73,20 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://kurlyspearlies.com/blog/zoom-vs-at-home-whitening/</loc>
+    <lastmod>2026-06-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://kurlyspearlies.com/locations/milton/</loc>
     <lastmod>2026-06-11</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://kurlyspearlies.com/locations/oakville/</loc>
+    <lastmod>2026-06-15</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
