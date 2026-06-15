@@ -97,7 +97,7 @@
 
     /* MARQUEE — smooth, faster, GPU-friendly */
     .marquee{padding:22px 0}
-    .marquee-track{animation-duration:8s !important;font-size:26px}
+    .marquee-track{animation-duration:140s !important;font-size:26px}
     .marquee-track > span{gap:48px;padding-right:48px}
     .marquee-track .dot{width:6px;height:6px}
 
@@ -266,7 +266,7 @@
   .hero-image-caption .text{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--plum-deep);line-height:1.4}
 
   .marquee{padding:36px 0;overflow:hidden;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);background:var(--paper)}
-  .marquee-track{display:flex;width:max-content;gap:0;font-family:'Italiana',serif;font-size:42px;color:var(--plum);white-space:nowrap;animation:marquee 50s linear infinite;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+  .marquee-track{display:flex;width:max-content;gap:0;font-family:'Italiana',serif;font-size:42px;color:var(--plum);white-space:nowrap;animation:marquee 200s linear infinite;will-change:transform;backface-visibility:hidden;-webkit-backface-visibility:hidden}
   .marquee-track > span{display:flex;align-items:center;gap:80px;flex-shrink:0;padding-right:80px}
   .marquee-track .dot{width:8px;height:8px;border-radius:50%;background:var(--gold);display:inline-block}
   .marquee-track em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--lavender-deep)}
@@ -473,7 +473,7 @@
     *:not(.marquee-track),*:not(.marquee-track)::before,*:not(.marquee-track)::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;scroll-behavior:auto !important}
     .reveal{opacity:1;transform:none}
     /* marquee continues — it's brand-ambient, not user-triggered */
-    .marquee-track{animation:marquee 50s linear infinite !important}
+    .marquee-track{animation:marquee 200s linear infinite !important}
   }
 
   @media (max-width:700px){
