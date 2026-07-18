@@ -241,6 +241,9 @@
   .hero-geo strong{font-style:normal;font-weight:500;color:var(--plum)}
 
   .hero-lede{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:22px;line-height:1.6;color:var(--muted);max-width:480px;margin-bottom:36px}
+  /* subtle on-brand inline links (were browser-default blue) */
+  .hero-lede a{color:var(--plum);text-decoration:underline;text-decoration-color:var(--gold-soft);text-decoration-thickness:1px;text-underline-offset:4px;transition:color .3s,text-decoration-color .3s}
+  .hero-lede a:hover{color:var(--lavender-deep);text-decoration-color:var(--lavender-deep)}
 
   .btn-row{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin-bottom:36px}
   .btn{display:inline-flex;align-items:center;gap:10px;font-family:'Tenor Sans',sans-serif;font-size:13px;letter-spacing:.26em;text-transform:uppercase;text-decoration:none;font-weight:400;transition:.3s;min-height:44px}
