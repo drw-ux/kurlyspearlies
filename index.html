@@ -247,6 +247,10 @@
   .btn-primary{background:var(--plum-deep);color:var(--bone);padding:18px 34px;border-radius:0}
   .btn-primary::after{content:"→";margin-left:6px;transition:transform .3s}
   .btn-primary:hover{background:var(--lavender-deep)}
+  /* Fix: offering-card CTA — generic `.offering a` (color:inherit, column flex,
+     height:100%) was overriding the button, making dark-on-dark stretched box */
+  .offering a.btn-primary{color:var(--bone);display:inline-flex;flex-direction:row;height:auto;align-self:flex-start;margin-top:auto}
+  .offering a.btn-primary:hover{color:var(--bone)}
   .btn-primary:hover::after{transform:translateX(6px)}
   /* FIX #3: ghost button 44px tap target */
   .btn-ghost{color:var(--plum);border-bottom:1.5px solid var(--plum);padding:14px 4px;min-height:44px;box-sizing:border-box}
