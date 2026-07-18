@@ -118,7 +118,8 @@
 /* -------- soft geometry (mobile/iOS only; desktop keeps square editorial edges) -------- */
 @media (max-width:744px){
   .btn-primary,.offering a.btn-primary{border-radius:99px}
-  .offering-img,.editorial-img,.journal-img,.hero-image-frame,.hero-image-frame img,.card{border-radius:20px;overflow:hidden}
+  .offering-img,.editorial-img,.journal-img,.hero-image-frame,.hero-image-frame img{border-radius:20px;overflow:hidden}
+  .card{border-radius:20px;overflow:visible} /* ribbon badge pokes above the card */
   .journal-card{border-radius:22px;overflow:hidden}
   blockquote,.alt-box{border-radius:18px}
 }
