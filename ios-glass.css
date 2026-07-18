@@ -1,0 +1,288 @@
+/* ============================================================
+   Kurly's Pearlies — iOS Liquid Glass layer (preview build)
+   Mobile-first enhancement. Loads after page CSS; desktop untouched.
+   ============================================================ */
+:root{
+  --lg-blur:14px;
+  --lg-sat:1.5;
+  --lg-bg:rgba(255,252,246,.55);
+  --lg-bg-strong:rgba(255,252,246,.82);
+  --lg-hairline:rgba(255,255,255,.72);
+  --lg-edge:rgba(46,30,54,.10);
+  --lg-shadow:0 14px 40px -8px rgba(46,30,54,.22),0 3px 10px rgba(46,30,54,.08);
+  --lg-spring:cubic-bezier(.34,1.4,.44,1);
+  --lg-dock-h:66px;
+}
+
+/* -------- press physics (touch devices, all sizes) -------- */
+@media (pointer:coarse){
+  a,button{-webkit-tap-highlight-color:transparent}
+  .nav-cta,.btn,.btn-primary,.btn-ghost,.card-cta,.lg-press{
+    transition:transform .28s var(--lg-spring),box-shadow .28s var(--lg-spring),background .3s;
+  }
+  .nav-cta:active,.btn:active,.btn-primary:active,.btn-ghost:active,.card-cta:active,.lg-press:active{
+    transform:scale(.955);
+  }
+}
+
+@media (max-width:744px){
+
+  /* -------- condensing frosted nav --------
+     (position:sticky is broken by overflow-x:hidden on html/body,
+      so on mobile we pin the nav and pad the body via JS) -------- */
+  nav.site{
+    position:fixed;top:0;left:0;right:0;z-index:110;
+    padding-top:env(safe-area-inset-top);
+    background:rgba(251,246,238,.52);
+    -webkit-backdrop-filter:blur(var(--lg-blur)) saturate(var(--lg-sat));
+    backdrop-filter:blur(var(--lg-blur)) saturate(var(--lg-sat));
+    border-bottom:1px solid transparent;
+    box-shadow:inset 0 1px 0 var(--lg-hairline);
+    transition:background .4s,box-shadow .4s,border-color .4s;
+  }
+  nav.site .nav-inner,nav.site .logo-img,nav.site .nav-cta{
+    transition:padding .38s var(--lg-spring),height .38s var(--lg-spring),transform .28s var(--lg-spring);
+  }
+  nav.site.lg-condensed{
+    background:var(--lg-bg-strong);
+    border-bottom-color:var(--lg-edge);
+    box-shadow:inset 0 1px 0 var(--lg-hairline),0 12px 30px -14px rgba(46,30,54,.22);
+  }
+  nav.site.lg-condensed .nav-inner{padding-top:7px;padding-bottom:7px}
+  nav.site.lg-condensed .logo-img{height:30px}
+
+  /* -------- floating glass dock -------- */
+  body.lg-has-dock{padding-bottom:calc(var(--lg-dock-h) + 30px + env(safe-area-inset-bottom))}
+  .lg-dock{
+    position:fixed;left:50%;bottom:calc(12px + env(safe-area-inset-bottom));
+    transform:translateX(-50%);
+    z-index:120;
+    display:flex;align-items:stretch;gap:6px;
+    padding:7px;border-radius:33px;
+    background:var(--lg-bg);
+    -webkit-backdrop-filter:blur(16px) saturate(1.5);
+    backdrop-filter:blur(16px) saturate(1.5);
+    border:1px solid rgba(255,255,255,.45);
+    box-shadow:var(--lg-shadow),inset 0 1px 0 var(--lg-hairline),inset 0 -1px 0 rgba(46,30,54,.05);
+    transition:transform .5s var(--lg-spring),opacity .32s ease;
+    max-width:calc(100vw - 24px);
+  }
+  /* specular highlight sweep on entry */
+  .lg-dock::before{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 46%,rgba(255,255,255,.14) 54%,transparent 66%);
+    background-size:260% 100%;background-position:130% 0;
+    animation:lg-sheen 1.4s .5s var(--lg-spring) forwards;
+  }
+  @keyframes lg-sheen{to{background-position:-130% 0}}
+  .lg-dock.lg-hide{transform:translate(-50%,150%);opacity:0;pointer-events:none}
+
+  .lg-dock a span{white-space:nowrap}
+  .lg-dock a{
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+    min-width:64px;min-height:52px;padding:6px 14px;border-radius:26px;
+    text-decoration:none;color:var(--plum,#544064);
+    font-family:'Tenor Sans',sans-serif;font-size:9px;letter-spacing:.18em;text-transform:uppercase;
+    transition:transform .28s var(--lg-spring),background .3s;
+  }
+  .lg-dock a:active{transform:scale(.93)}
+  .lg-dock a svg{width:19px;height:19px;stroke:currentColor;fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+  .lg-dock a.lg-side:active{background:rgba(217,204,230,.35)}
+
+  .lg-dock a.lg-book{
+    flex-direction:row;gap:8px;padding:6px 22px;
+    background:linear-gradient(180deg,#412f4d 0%,#2E1E36 100%);
+    color:#FBF6EE;font-size:10px;letter-spacing:.2em;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.28),inset 0 -1px 0 rgba(0,0,0,.25),0 8px 20px -6px rgba(46,30,54,.5);
+    position:relative;overflow:hidden;
+  }
+  .lg-dock a.lg-book::after{
+    content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
+    background:radial-gradient(120% 90% at 50% -30%,rgba(255,255,255,.32),transparent 55%);
+  }
+
+  /* -------- glass cards -------- */
+  .card,.journal-card,.alt-box{
+    background:rgba(255,252,246,.9) !important;
+    
+    border:1px solid rgba(255,255,255,.55);
+    box-shadow:inset 0 1px 0 var(--lg-hairline),0 12px 34px -14px rgba(46,30,54,.16);
+    border-radius:22px;
+  }
+
+  /* keep content clear of the home-indicator */
+  footer,.footer-inner{padding-bottom:env(safe-area-inset-bottom)}
+}
+
+
+/* -------- soft geometry (mobile/iOS only; desktop keeps square editorial edges) -------- */
+@media (max-width:744px){
+  .btn-primary,.offering a.btn-primary{border-radius:99px}
+  .offering-img,.editorial-img,.journal-img,.hero-image-frame,.hero-image-frame img,.card{border-radius:20px;overflow:hidden}
+  .journal-card{border-radius:22px;overflow:hidden}
+  blockquote,.alt-box{border-radius:18px}
+}
+
+/* -------- graceful fallbacks -------- */
+@supports not ((-webkit-backdrop-filter:blur(1px)) or (backdrop-filter:blur(1px))){
+  nav.site,.lg-dock{background:#FFFCF6}
+}
+@media (prefers-reduced-transparency:reduce){
+  nav.site,.lg-dock,.card,.journal-card,.alt-box{
+    background:#FFFCF6 !important;
+    
+  }
+}
+@media (prefers-reduced-motion:reduce){
+  .lg-dock,.lg-dock::before,nav.site .nav-inner,nav.site .logo-img{animation:none !important;transition:none !important}
+}
+
+/* ============ v2: real-device fixes + Boreal&Bay flow ============ */
+
+/* iOS Safari ignores overflow-x:hidden in places — clip actually clips */
+@media (max-width:744px){
+  /* clip stray horizontal overflow per-section, NOT on html/body —
+     root-level clip turns body into the scroller on iOS and breaks
+     every position:fixed element (dock appeared mid-screen) */
+  body > :not(nav):not(.lg-dock):not(.lg-menu){overflow-x:clip}
+
+  /* -------- nav: compact, no wrapping blobs -------- */
+  .nav-cta{white-space:nowrap;padding:10px 16px;font-size:10px}
+  .nav-back{display:none}
+  nav.site .nav-inner{grid-template-columns:auto 1fr auto;gap:10px}
+  nav.site .logo-wrap{justify-self:center}
+  .lg-menu-btn{
+    width:42px;height:42px;border-radius:50%;border:1px solid rgba(255,255,255,.55);
+    background:rgba(255,252,246,.6);
+    -webkit-backdrop-filter:blur(18px) saturate(1.6);backdrop-filter:blur(18px) saturate(1.6);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.7),0 4px 14px -6px rgba(46,30,54,.25);
+    display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+    cursor:pointer;padding:0;
+  }
+  .lg-menu-btn span{display:block;width:16px;height:1.5px;background:var(--plum-deep,#2E1E36);border-radius:2px;transition:transform .35s var(--lg-spring),opacity .3s}
+  html.lg-menu-open .lg-menu-btn span:first-child{transform:translateY(3.25px) rotate(45deg)}
+  html.lg-menu-open .lg-menu-btn span:last-child{transform:translateY(-3.25px) rotate(-45deg)}
+
+  /* dock: clear Safari's floating URL bar a little better */
+  .lg-dock{bottom:calc(18px + env(safe-area-inset-bottom))}
+
+  /* -------- chapter rhythm (Boreal & Bay cadence) -------- */
+  .edition{flex-direction:column;gap:14px;align-items:center;text-align:center;margin:0 auto 30px}
+  .edition .line{width:1px;height:34px;background:linear-gradient(180deg,transparent,var(--gold,#B89A6F))}
+  .edition .num{font-size:30px;color:var(--lavender-deep,#8E7CAF)}
+  .edition .label{letter-spacing:.34em}
+  .section{scroll-margin-top:84px}
+  .article-head .crumb{display:block;margin-bottom:18px}
+}
+
+/* -------- numbered glass menu overlay (all in mobile scope via JS gate) -------- */
+.lg-menu{
+  position:fixed;inset:0;z-index:180;display:flex;flex-direction:column;
+  padding:calc(24px + env(safe-area-inset-top)) 28px calc(28px + env(safe-area-inset-bottom));
+  background:rgba(251,246,238,.78);
+  -webkit-backdrop-filter:blur(24px) saturate(1.5);backdrop-filter:blur(24px) saturate(1.5);
+  opacity:0;pointer-events:none;transition:opacity .45s ease;
+}
+html.lg-menu-open .lg-menu{opacity:1;pointer-events:auto}
+html.lg-menu-open{overflow:hidden}
+.lg-menu-links{list-style:none;margin:auto 0;padding:0;display:flex;flex-direction:column;gap:6px}
+.lg-menu-links a{
+  display:flex;align-items:baseline;gap:16px;text-decoration:none;padding:10px 0;
+  opacity:0;transform:translateY(18px);
+  transition:opacity .5s ease,transform .6s var(--lg-spring),color .3s;
+}
+html.lg-menu-open .lg-menu-links a{opacity:1;transform:none}
+.lg-menu-links a:nth-child(1){transition-delay:.06s}.lg-menu-links li:nth-child(1) a{transition-delay:.06s}
+.lg-menu-links li:nth-child(2) a{transition-delay:.12s}
+.lg-menu-links li:nth-child(3) a{transition-delay:.18s}
+.lg-menu-links li:nth-child(4) a{transition-delay:.24s}
+.lg-menu-links li:nth-child(5) a{transition-delay:.30s}
+.lg-menu-num{font-family:'Tenor Sans',sans-serif;font-size:11px;letter-spacing:.2em;color:var(--gold-dark,#8C7541);min-width:26px}
+.lg-menu-word{font-family:'Italiana',serif;font-size:38px;line-height:1.15;color:var(--plum-deep,#2E1E36)}
+.lg-menu-word em{font-family:'Cormorant Garamond',serif;font-style:italic;color:var(--lavender-deep,#8E7CAF)}
+.lg-menu-foot{display:flex;flex-direction:column;gap:16px;opacity:0;transition:opacity .5s ease .38s}
+html.lg-menu-open .lg-menu-foot{opacity:1}
+.lg-menu-book{
+  display:flex;align-items:center;justify-content:center;gap:10px;text-decoration:none;
+  background:linear-gradient(180deg,#412f4d,#2E1E36);color:#FBF6EE;
+  font-family:'Tenor Sans',sans-serif;font-size:11px;letter-spacing:.22em;text-transform:uppercase;
+  padding:17px 24px;border-radius:99px;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 10px 26px -8px rgba(46,30,54,.45);
+}
+.lg-menu-meta{display:flex;justify-content:center;gap:22px;font-family:'Tenor Sans',sans-serif;font-size:10px;letter-spacing:.18em;text-transform:uppercase}
+.lg-menu-meta a{color:var(--muted-dark,#5F5168);text-decoration:none}
+
+/* keep nav (with the X button) above the open menu */
+html.lg-menu-open nav.site{z-index:220;background:transparent;box-shadow:none;border-bottom-color:transparent}
+
+/* essays keep their square editorial edges (per Derek) */
+@media (max-width:744px){
+  .journal-card,.journal-img,.journal-card *{border-radius:0 !important}
+}
+
+/* hero caption: one quiet line instead of a boxy stack */
+@media (max-width:744px){
+  .hero-image-caption{
+    display:flex;align-items:baseline;justify-content:center;gap:11px;
+    background:transparent !important;box-shadow:none !important;border-top:none !important;
+    padding:14px 6px 0;margin-top:14px;
+  }
+  .hero-image-caption .num{font-size:19px;margin:0;color:var(--gold-dark,#8C7541)}
+  .hero-image-caption .text{font-size:clamp(12.5px,3.7vw,15px);white-space:nowrap}
+}
+
+/* trim the dead air between fixed nav and page headers */
+@media (max-width:744px){
+  .article-head{padding-top:30px !important}
+}
+
+/* sweep fixes: single-line CTAs + scrollable tables on mobile */
+@media (max-width:744px){
+  .btn,.btn-primary,.btn-ghost{white-space:nowrap;font-size:10px;letter-spacing:.15em;padding:14px 20px}
+  .btn-ghost{padding:14px 4px}
+  table{display:block;overflow-x:auto;-webkit-overflow-scrolling:touch;max-width:100%}
+}
+
+/* -------- god-mode image loading: fade/unblur as photos arrive -------- */
+img[data-lgfade]{
+  opacity:0;transform:scale(1.015);filter:blur(4px);
+  transition:opacity .6s ease,transform .9s cubic-bezier(.16,1,.3,1),filter .6s ease;
+}
+img[data-lgfade].lg-in{opacity:1;transform:none;filter:none}
+@media (prefers-reduced-motion:reduce){
+  img[data-lgfade]{opacity:1 !important;transform:none !important;filter:none !important;transition:none !important}
+}
+
+/* -------- compact mobile footer -------- */
+@media (max-width:744px){
+  footer{padding-bottom:8px}
+  footer .footer-top{display:grid;grid-template-columns:1fr 1fr;gap:6px 22px;align-items:start}
+  footer .footer-brand{grid-column:1/-1;margin-bottom:4px}
+  .footer-logo-img{height:40px;width:auto}
+  footer .footer-brand p{font-size:13.5px;line-height:1.6;margin:12px 0}
+  footer .addr{font-size:11.5px;line-height:1.7;letter-spacing:.06em}
+  footer h4{margin:16px 0 4px}
+  footer ul{list-style:none;margin:0;padding:0}
+  footer a{min-height:0;padding:4px 0;font-size:14px;line-height:1.45;display:inline-block;border-bottom:none}
+  /* Offerings + Book side by side */
+  footer .footer-top > div:nth-child(2){grid-column:1;grid-row:2}
+  footer .footer-top > div:nth-child(4){grid-column:2;grid-row:2}
+  /* Locations flow inline like tags */
+  footer .footer-top > div:nth-child(3){grid-column:1/-1;grid-row:3}
+  footer .footer-top > div:nth-child(3) ul{display:flex;flex-wrap:wrap;gap:0 18px}
+  .footer-bottom{flex-direction:column;gap:4px;text-align:center;padding-top:18px;font-size:10px}
+}
+
+/* compact footer v2: out-shout the page's !important rules */
+@media (max-width:744px){
+  footer{padding:44px 24px 16px !important}
+  footer .footer-top{grid-template-columns:1fr 1fr !important;gap:4px 22px !important;padding-bottom:22px !important}
+  footer li{margin-bottom:0 !important}
+  .footer-logo-img{height:34px !important;margin-bottom:0 !important}
+  footer .footer-brand p{margin:10px 0 8px !important}
+}
+
+/* lg-fixed-stabilize: pin fixed glass to its own GPU layer */
+@media (max-width:744px){
+  nav.site{transform:translateZ(0)}
+}
