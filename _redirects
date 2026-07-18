@@ -1,25 +1,12 @@
-# Netlify redirects — booking flow + legacy URLs + anchor fallbacks
+# Netlify redirects — legacy URLs only (real pages now exist; do not shadow them)
+# NOTE: inert on GitHub Pages; kept accurate in case of future Netlify/CF migration
 
-# Booking flow → Jane App (external)
-/book                  https://kurlyspearlies.janeapp.com/        302
-/book-online           https://kurlyspearlies.janeapp.com/        302
-/booking               https://kurlyspearlies.janeapp.com/        302
-/reserve               https://kurlyspearlies.janeapp.com/        302
-
-# Nav links → in-page anchors on home (one-page site for now)
+/booking               /book/                                      301
+/reserve               /book/                                      301
 /services              /#offerings                                 301
 /about                 /#about                                     301
 /kelly                 /#about                                     301
-/locations             /#locations                                 301
-/blog                  /#journal                                   301
-/journal               /#journal                                   301
+/journal               /blog/                                      301
 /contact               /#contact                                   301
 /faqs                  /#offerings                                 301
 /ritual                /#ritual                                    301
-
-# Future-proof service / location / blog stubs → relevant anchors (not root)
-/services/*            /#offerings                                 302
-/locations/*           /#locations                                 302
-/blog/*                /#journal                                   302
-
-# (Netlify auto-serves 404.html for anything else)
