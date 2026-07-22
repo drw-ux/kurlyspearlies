@@ -352,15 +352,16 @@ img[data-lgfade].lg-in{opacity:1;transform:none;filter:none}
   .hero{overflow:clip}
 }
 
-/* tighten hero rhythm so trust pills clear Safari's floating address bar */
+/* hero rhythm: trust pills end ~30px above Safari's address bar —
+   matching their own row spacing (Derek: equal gap above and below) */
 @media (max-width:744px){
-  .hero{padding-top:8px !important;padding-bottom:30px !important}
-  .hero .edition{margin-bottom:12px}
-  .hero .edition .line{height:18px}
-  h1.hero-display{margin-bottom:8px !important}
-  .hero-geo{margin-bottom:14px !important}
-  .hero-lede{margin-bottom:16px !important}
-  .btn-row,.hero-actions{margin-bottom:22px !important}
-  .trust-pills{gap:4px 0 !important;line-height:1.9}
+  .hero{padding-top:14px !important;padding-bottom:30px !important}
+  .hero .edition{margin-bottom:18px}
+  .hero .edition .line{height:20px}
+  h1.hero-display{margin-bottom:10px !important}
+  .hero-geo{margin-bottom:18px !important}
+  .hero-lede{margin-bottom:22px !important}
+  .btn-row,.hero-actions{margin-bottom:30px !important}
+  .trust-pills{gap:9px 0 !important;line-height:1.9}
   .hero-inner{gap:22px !important}
 }
