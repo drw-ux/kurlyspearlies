@@ -72,9 +72,10 @@
     content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;
     background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.5) 46%,rgba(255,255,255,.14) 54%,transparent 66%);
     background-size:260% 100%;background-position:130% 0;
-    animation:lg-sheen 1.4s .5s var(--lg-spring) forwards;
+    animation:none;
   }
   @keyframes lg-sheen{to{background-position:-130% 0}}
+  .lg-dock.lg-entered::before{animation:lg-sheen 1.3s .45s var(--lg-spring) forwards}
   .lg-dock.lg-hide{transform:translate(-50%,150%);opacity:0;pointer-events:none}
 
   .lg-dock a span{white-space:nowrap}

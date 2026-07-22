@@ -27,8 +27,18 @@
       '<a class="lg-side lg-press" href="tel:+14164604436" aria-label="Call Kurly’s Pearlies">' + icons.phone + "<span>Call</span></a>" +
       '<a class="lg-book lg-press" href="' + bookHref + '"' + (onBookPage ? ' target="_blank" rel="noopener"' : "") + ">" + icons.sparkle + "<span>Book</span></a>" +
       '<a class="lg-side lg-press" href="https://maps.apple.com/?daddr=28+Robina+Avenue,+Georgetown,+ON+L7G+5X9" target="_blank" rel="noopener" aria-label="Get directions">' + icons.pin + "<span>Visit</span></a>";
+    /* enter after the page has had a moment to breathe */
+    dock.classList.add("lg-hide");
     document.body.appendChild(dock);
     document.body.classList.add("lg-has-dock");
+    var entered = false;
+    function enter() {
+      if (entered) return; entered = true;
+      dock.classList.remove("lg-hide");
+      dock.classList.add("lg-entered");
+    }
+    setTimeout(enter, 900);
+    window.addEventListener("scroll", enter, { once: true, passive: true });
     return dock;
   }
 
@@ -140,7 +150,7 @@
       var dy = y - lastY;
       lastY = y;
       if (nav) nav.classList.toggle("lg-condensed", y > 28);
-      if (dock) {
+      if (dock && dock.classList.contains("lg-entered")) {
         /* accumulate direction so tiny jitters don't flicker the dock */
         if ((dy > 0 && acc < 0) || (dy < 0 && acc > 0)) acc = 0;
         acc += dy;
