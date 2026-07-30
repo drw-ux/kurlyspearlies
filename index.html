@@ -8,6 +8,13 @@
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-523J779SDH');
+    document.addEventListener('click',function(e){
+      var a=e.target&&e.target.closest?e.target.closest('a'):null;if(!a)return;
+      var h=a.getAttribute('href')||'';
+      if(h.indexOf('tel:')===0){gtag('event','tel_click',{link_url:h,page_path:location.pathname});}
+      else if(h.indexOf('janeapp')>-1){gtag('event','jane_click',{link_url:h,page_path:location.pathname});}
+      else if(h==='/book/'){gtag('event','book_cta_click',{page_path:location.pathname});}
+    });
   </script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, minimum-scale=1, viewport-fit=cover">
@@ -612,6 +619,7 @@
           <p>A full hour beneath a weighted blanket. Ultrasonic scaling, oral-cancer screening, and a home-care plan written for the way you actually live. Insurance billed directly to your provider.</p>
           <span class="offering-link">See details</span>
         </a>
+        <p class="offering-price" style="margin:18px 0 14px;font-family:'Tenor Sans',sans-serif;font-size:12px;letter-spacing:.12em;color:var(--plum-deep)">A full hour of <a href="/cleaning/">dental cleaning in Georgetown</a> — insurance billed directly</p>
       </article>
       <article class="offering reveal">
         <a href="/whitening/">
