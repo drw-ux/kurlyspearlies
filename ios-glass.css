@@ -370,3 +370,9 @@ img[data-lgfade].lg-in{opacity:1;transform:none;filter:none}
 @media (min-width:745px){
   nav.site{position:fixed;top:0;left:0;right:0;z-index:110}
 }
+
+/* desktop caption: quote sits beside the numeral (same sizes, just a shift) */
+@media (min-width:745px){
+  .hero-image-caption{display:flex;align-items:center;gap:20px}
+  .hero-image-caption .num{margin-bottom:0}
+}
