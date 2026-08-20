@@ -120,13 +120,9 @@
   }
 
   function init() {
-    if (!mq.matches) return;
-    var dock = buildDock();
-    buildMenu();
-    godScroll();
+    /* nav is pinned at ALL widths (sticky is broken sitewide by
+       overflow-x:hidden) — reserve its height, keep anchors clear */
     var nav = document.querySelector("nav.site");
-    /* nav is fixed on mobile (sticky is broken by overflow-x:hidden) —
-       reserve its height and keep anchor targets clear of it */
     function padForNav() {
       if (!nav) return;
       var h = nav.offsetHeight;
@@ -136,6 +132,10 @@
     padForNav();
     window.addEventListener("resize", padForNav);
     if (document.fonts && document.fonts.ready) document.fonts.ready.then(padForNav);
+    if (!mq.matches) return; /* desktop gets the pinned nav only */
+    var dock = buildDock();
+    buildMenu();
+    godScroll();
     var lastY = window.scrollY, acc = 0, ticking = false;
 
     function onScroll() {

@@ -365,3 +365,8 @@ img[data-lgfade].lg-in{opacity:1;transform:none;filter:none}
   .trust-pills{gap:9px 0 !important;line-height:1.9}
   .hero-inner{gap:22px !important}
 }
+
+/* desktop: pin the frosted nav (sticky never worked — overflow-x:hidden) */
+@media (min-width:745px){
+  nav.site{position:fixed;top:0;left:0;right:0;z-index:110}
+}
